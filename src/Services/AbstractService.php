@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wpj\GraphQL\Services;
+namespace WpjShop\GraphQL\Services;
 
 use GraphQL\Client;
 use GraphQL\Exception\QueryError;

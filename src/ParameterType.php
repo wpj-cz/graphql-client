@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Wpj\GraphQL;
+namespace WpjShop\GraphQL;
 
 final class ParameterType
 {

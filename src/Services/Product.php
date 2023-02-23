@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Wpj\GraphQL\Services;
+namespace WpjShop\GraphQL\Services;
 
 use GraphQL\Mutation;
 use GraphQL\Query;
 use GraphQL\Variable;
-use Wpj\GraphQL\DataObjects\Product\ProductParameter;
+use WpjShop\GraphQL\DataObjects\Product\ProductParameter;
 
 /**
  * Service that works with product.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wpj\GraphQL\Services;
+namespace WpjShop\GraphQL\Services;
 
 interface ServiceInterface
 {

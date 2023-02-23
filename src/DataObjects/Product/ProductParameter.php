@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Wpj\GraphQL\DataObjects\Product;
+namespace WpjShop\GraphQL\DataObjects\Product;
 
-use Wpj\GraphQL\ParameterType;
+use WpjShop\GraphQL\ParameterType;
 
 final class ProductParameter
 {

@@ -1,9 +1,10 @@
 {
-    "name": "wpj-cz/graphql-client",
+    "name": "wpjshop/graphql-client",
     "description": "GraphQL client for WPJ GraphQL API.",
     "type": "library",
     "license": "MIT",
     "keywords": [
+        "wpjshop",
         "graphql",
         "graph-ql",
         "client",
@@ -11,7 +12,7 @@
     ],
     "authors": [
         {
-            "name": "Wpj Wpj",
+            "name": "Wpj Shop",
             "email": "wpj@wpj.cz"
         }
     ],

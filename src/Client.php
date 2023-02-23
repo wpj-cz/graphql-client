@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Wpj\GraphQL;
+namespace WpjShop\GraphQL;
 
-use Wpj\GraphQL\Services\Parameter;
-use Wpj\GraphQL\Services\Product;
-use Wpj\GraphQL\Services\Seller;
+use WpjShop\GraphQL\Services\Parameter;
+use WpjShop\GraphQL\Services\Product;
+use WpjShop\GraphQL\Services\Seller;
 
 final class Client
 {
