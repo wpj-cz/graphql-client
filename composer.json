@@ -1,0 +1,27 @@
+{
+    "name": "wpj-cz/graphql-client",
+    "description": "GraphQL client for WPJ GraphQL API.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "graphql",
+        "graph-ql",
+        "client",
+        "php"
+    ],
+    "authors": [
+        {
+            "name": "Wpj Wpj",
+            "email": "wpj@wpj.cz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Wpj\\GraphQL\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.4",
+        "gmostafa/php-graphql-client": "^1.13"
+    }
+}
