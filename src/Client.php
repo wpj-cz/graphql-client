@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL;
 
+use GraphQL\Results;
 use WpjShop\GraphQL\Services\Parameter;
 use WpjShop\GraphQL\Services\Product;
 use WpjShop\GraphQL\Services\Seller;
@@ -29,6 +30,16 @@ final class Client
         );
 
         $this->createServices();
+    }
+
+    public function runQuery($query, bool $resultsAsArray = false, array $variables = []): Results
+    {
+        return $this->client->runQuery($query, $resultsAsArray, $variables);
+    }
+
+    public function runRawQuery(string $queryString, $resultsAsArray = false, array $variables = []): Results
+    {
+        return $this->client->runRawQuery($queryString, $resultsAsArray, $variables);
     }
 
     private function createServices(): void
