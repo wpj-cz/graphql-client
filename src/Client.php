@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace WpjShop\GraphQL;
 
 use GraphQL\Results;
+use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
 use WpjShop\GraphQL\Services\Product;
 use WpjShop\GraphQL\Services\Seller;
 
 final class Client
 {
+    public Order $order;
     public Product $product;
     public Parameter $parameter;
     public Seller $seller;
@@ -53,6 +55,7 @@ final class Client
     private function getServicesClasses(): array
     {
         return [
+            Order::class,
             Product::class,
             Parameter::class,
             Seller::class,
