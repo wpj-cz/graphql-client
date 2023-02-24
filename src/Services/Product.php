@@ -124,7 +124,7 @@ class Product extends AbstractService
             (new Query('product'))
                 ->setSelectionSet(
                     $this->getSelectionSet()
-                )
+                ),
         ];
     }
 }
