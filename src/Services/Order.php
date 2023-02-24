@@ -25,7 +25,7 @@ class Order extends AbstractService
                 'withVat',
                 'withoutVat',
                 'currency' => [
-                    'code'
+                    'code',
                 ],
             ],
             'items' => [
@@ -38,7 +38,7 @@ class Order extends AbstractService
                     'withoutVat',
                     'vat',
                     'currency' => [
-                        'code'
+                        'code',
                     ],
                 ],
             ],
