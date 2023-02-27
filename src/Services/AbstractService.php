@@ -34,12 +34,18 @@ abstract class AbstractService implements ServiceInterface
             $this->recursivelyCreateSelectionSet($this->getDefaultSelectionSet()) : $this->selection;
     }
 
-    protected function executeQuery(Query $gql, array $variables = []): ?array
+    protected function executeQuery(Query $gql, array $variables = [], bool $resetResult = true): ?array
     {
         try {
-            return $this->client
+            $result = $this->client
                 ->runQuery($gql, true, $variables)
                 ->getData();
+
+            if ($resetResult) {
+                return reset($result);
+            }
+
+            return $result;
         } catch (QueryError $e) {
             // handle not found error and return null as result
             if (($e->getErrorDetails()['extensions']['category'] ?? null) === 'NOT_FOUND') {
