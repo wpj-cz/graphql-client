@@ -41,7 +41,7 @@ abstract class AbstractService implements ServiceInterface
                 ->runQuery($gql, true, $variables)
                 ->getData();
 
-            if ($resetResult) {
+            if ($resetResult && is_array($result)) {
                 return reset($result);
             }
 
