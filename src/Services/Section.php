@@ -4,25 +4,32 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Services;
 
-use GraphQL\Mutation;
-use GraphQL\Variable;
+use GraphQL\Query;
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
-class Store extends AbstractService
+class Section extends AbstractService
 {
     protected function getDefaultSelectionSet(): array
     {
         return [
             'id',
-            'visible',
             'name',
-            'type',
+            'visible',
+            'url',
+            'isVirtual',
+            (new Query('parent'))
+                ->setSelectionSet(
+                    [
+                        'id',
+                        'name',
+                    ]
+                ),
         ];
     }
 
     public function get(int $id): ?array
     {
-        $gql = $this->createBaseQuery('store')
+        $gql = $this->createBaseQuery('section')
             ->setArguments(['id' => $id]);
 
         return $this->executeQuery($gql);
@@ -30,27 +37,18 @@ class Store extends AbstractService
 
     public function list(int $offset = 0, int $limit = 100): array
     {
-        $gql = $this->createBaseQuery('stores', true);
+        $gql = $this->createBaseQuery('sectionsList', true);
 
         return $this->executeQuery($gql);
     }
 
     public function update(int $id, array $data): array
     {
-        throw new MethodNotImplementedException('Store update not implemented!');
+        throw new MethodNotImplementedException('Section update is not implemented');
     }
 
     public function create(array $data): array
     {
-        $gql = (new Mutation('storeCreate'))
-            ->setVariables([new Variable('input', 'StoreCreateInput', true)])
-            ->setArguments(['input' => '$input'])
-            ->setSelectionSet(
-                $this->getSelectionSet()
-            );
-
-        return $this->executeQuery($gql, [
-            'input' => $data,
-        ]);
+        throw new MethodNotImplementedException('Section create is not implemented');
     }
 }

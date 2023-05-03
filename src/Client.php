@@ -8,6 +8,7 @@ use GraphQL\Results;
 use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
 use WpjShop\GraphQL\Services\Product;
+use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
 use WpjShop\GraphQL\Services\Store;
 
@@ -16,6 +17,7 @@ final class Client
     public Order $order;
     public Product $product;
     public Parameter $parameter;
+    public Section $section;
     public Seller $seller;
     public Store $store;
 
@@ -60,6 +62,7 @@ final class Client
             Order::class,
             Product::class,
             Parameter::class,
+            Section::class,
             Seller::class,
             Store::class,
         ];

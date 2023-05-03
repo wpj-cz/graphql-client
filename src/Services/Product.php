@@ -25,6 +25,15 @@ class Product extends AbstractService
         return $this->executeQuery($gql);
     }
 
+    public function getByCode(string $code): ?array
+    {
+        $gql = $this->createBaseQuery('products', true)
+            ->setVariables([new Variable('filter', 'ProductFilterInput', true)])
+            ->setArguments(['filter' => '$filter']);
+
+        return $this->executeQuery($gql, ['filter' => ['code' => $code]])['items'][0] ?? null;
+    }
+
     /**
      * Returns products list.
      */

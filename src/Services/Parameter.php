@@ -6,6 +6,7 @@ namespace WpjShop\GraphQL\Services;
 
 use GraphQL\Mutation;
 use GraphQL\Variable;
+use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
 /**
  * Service that works with parameters.
@@ -35,7 +36,7 @@ class Parameter extends AbstractService
 
     public function update(int $id, array $data): array
     {
-        throw new \RuntimeException('Parameter update not implemented!');
+        throw new MethodNotImplementedException('Parameter update not implemented!');
     }
 
     /**
