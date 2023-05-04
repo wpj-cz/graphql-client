@@ -7,6 +7,7 @@ namespace WpjShop\GraphQL;
 use GraphQL\Results;
 use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
+use WpjShop\GraphQL\Services\Producer;
 use WpjShop\GraphQL\Services\Product;
 use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
@@ -16,6 +17,7 @@ final class Client
 {
     public Order $order;
     public Product $product;
+    public Producer $producer;
     public Parameter $parameter;
     public Section $section;
     public Seller $seller;
@@ -61,6 +63,7 @@ final class Client
         return [
             Order::class,
             Product::class,
+            Producer::class,
             Parameter::class,
             Section::class,
             Seller::class,
