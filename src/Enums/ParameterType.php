@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace WpjShop\GraphQL;
+namespace WpjShop\GraphQL\Enums;
 
 final class ParameterType
 {

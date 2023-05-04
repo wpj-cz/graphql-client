@@ -7,7 +7,10 @@ namespace WpjShop\GraphQL\Services;
 use GraphQL\Mutation;
 use GraphQL\Query;
 use GraphQL\Variable;
+use WpjShop\GraphQL\DataObjects\Product\CollectionItem;
+use WpjShop\GraphQL\DataObjects\Product\LinkItem;
 use WpjShop\GraphQL\DataObjects\Product\ProductParameter;
+use WpjShop\GraphQL\DataObjects\Product\RelatedItem;
 
 /**
  * Service that works with product.
@@ -93,6 +96,110 @@ class Product extends AbstractService
                     'productId' => $productId,
                     'parameterId' => $parameterId,
                     'values' => $valuesInput,
+                    'append' => $append,
+                ],
+            ]
+        );
+    }
+
+    /**
+     * Update product links.
+     *
+     * @param LinkItem[] $links
+     */
+    public function updateLinks(int $productId, array $links, bool $append = false): array
+    {
+        $gql = (new Mutation('productLinkUpdate'))
+            ->setVariables([new Variable('input', 'ProductLinkInput', true)])
+            ->setArguments(['input' => '$input'])
+            ->setSelectionSet(
+                $this->getProductMutateResponseSelectionSet()
+            );
+
+        $linksInput = [];
+
+        foreach ($links as $link) {
+            $linksInput[] = [
+                'name' => $link->getName(),
+                'link' => $link->getLink(),
+                'type' => $link->getType(),
+            ];
+        }
+
+        return $this->executeQuery(
+            $gql,
+            [
+                'input' => [
+                    'productId' => $productId,
+                    'links' => $linksInput,
+                    'append' => $append,
+                ],
+            ]
+        );
+    }
+
+    /**
+     * Update product collection.
+     *
+     * @param CollectionItem[] $products
+     */
+    public function updateCollections(int $productId, array $products, bool $append = false): array
+    {
+        $gql = (new Mutation('productCollectionUpdate'))
+            ->setVariables([new Variable('input', 'CollectionProductsInput', true)])
+            ->setArguments(['input' => '$input'])
+            ->setSelectionSet(
+                $this->getProductMutateResponseSelectionSet()
+            );
+
+        $productsInput = [];
+
+        foreach ($products as $product) {
+            $productsInput[] = [
+                'productId' => $product->productId,
+            ];
+        }
+
+        return $this->executeQuery(
+            $gql,
+            [
+                'input' => [
+                    'productId' => $productId,
+                    'products' => $productsInput,
+                    'append' => $append,
+                ],
+            ]
+        );
+    }
+
+    /**
+     * Update product related.
+     *
+     * @param RelatedItem[] $products
+     */
+    public function updateRelated(int $productId, array $products, bool $append = false): array
+    {
+        $gql = (new Mutation('productRelatedUpdate'))
+            ->setVariables([new Variable('input', 'RelatedProductsInput', true)])
+            ->setArguments(['input' => '$input'])
+            ->setSelectionSet(
+                $this->getProductMutateResponseSelectionSet()
+            );
+
+        $productsInput = [];
+
+        foreach ($products as $product) {
+            $productsInput[] = [
+                'productId' => $product->productId,
+            ];
+        }
+
+        return $this->executeQuery(
+            $gql,
+            [
+                'input' => [
+                    'productId' => $productId,
+                    'products' => $productsInput,
                     'append' => $append,
                 ],
             ]

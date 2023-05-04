@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\DataObjects\Product;
 
-use WpjShop\GraphQL\ParameterType;
+use WpjShop\GraphQL\Enums\ParameterType;
 
 final class ProductParameter
 {
