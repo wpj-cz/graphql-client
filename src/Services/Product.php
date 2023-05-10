@@ -70,7 +70,7 @@ class Product extends AbstractService
         );
     }
 
-    public function translate(int $productId, string $language, array $data)
+    public function translate(int $productId, string $language, array $data): array
     {
         $gql = (new Mutation('productTranslate'))
             ->setVariables([new Variable('input', 'ProductTranslationInput', true)])
