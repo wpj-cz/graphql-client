@@ -4,30 +4,24 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\DataObjects\Product;
 
-use WpjShop\GraphQL\Enums\ParameterType;
-
 final class ProductParameter
 {
-    private $value;
-    private string $type;
+    public int $productId;
+    public int $parameterId;
+    public array $values;
+    public bool $append;
 
-    public function __construct($value, string $type = ParameterType::LIST)
+    public function __construct(int $productId, int $parameterId, array $values, bool $append = false)
     {
-        $this->value = $value;
-        $this->type = $type;
-    }
-
-    public function getValue()
-    {
-        if ($this->type === ParameterType::NUMBER) {
-            return (float) $this->value;
+        foreach ($values as $value) {
+            if (!($value instanceof ParameterValue)) {
+                throw new \InvalidArgumentException('Argument "$values" must be type of ParameterValue[]!');
+            }
         }
 
-        return (string) $this->value;
-    }
-
-    public function getType(): string
-    {
-        return mb_strtolower($this->type);
+        $this->productId = $productId;
+        $this->parameterId = $parameterId;
+        $this->values = $values;
+        $this->append = $append;
     }
 }

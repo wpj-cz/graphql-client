@@ -9,6 +9,7 @@ use GraphQL\Query;
 use GraphQL\Variable;
 use WpjShop\GraphQL\DataObjects\Product\CollectionItem;
 use WpjShop\GraphQL\DataObjects\Product\LinkItem;
+use WpjShop\GraphQL\DataObjects\Product\ParameterValue;
 use WpjShop\GraphQL\DataObjects\Product\ProductParameter;
 use WpjShop\GraphQL\DataObjects\Product\RelatedItem;
 
@@ -87,9 +88,9 @@ class Product extends AbstractService
     /**
      * Update product parameter values.
      *
-     * @param ProductParameter[] $values
+     * @param ParameterValue[] $values
      */
-    public function updateParameter(int $productId, int $parameterId, array $values, bool $append = false): array
+    public function updateParameter(ProductParameter $productParameter): array
     {
         $gql = (new Mutation('productParameterUpdate'))
             ->setVariables([new Variable('input', 'ProductParameterInput', true)])
@@ -98,20 +99,48 @@ class Product extends AbstractService
                 $this->getProductMutateResponseSelectionSet()
             );
 
-        $valuesInput = [];
-        foreach ($values as $item) {
-            $valuesInput[][$item->getType()] = $item->getValue();
+        return $this->executeQuery(
+            $gql,
+            [
+                'input' => [
+                    'productId' => $productParameter->productId,
+                    'parameterId' => $productParameter->parameterId,
+                    'values' => $this->getParameterValuesInput($productParameter),
+                    'append' => $productParameter->append,
+                ],
+            ]
+        );
+    }
+
+    /**
+     * Bulk update of product parameters.
+     *
+     * @param ProductParameter[] $productParameters
+     */
+    public function updateParameterBulk(array $productParameters): array
+    {
+        $gql = (new Mutation('productParameterBulkUpdate'))
+            ->setVariables([new Variable('input', '[ProductParameterInput!]', true)])
+            ->setArguments(['input' => '$input'])
+            ->setSelectionSet(
+                ['result']
+            );
+
+        $input = [];
+
+        foreach ($productParameters as $productParameter) {
+            $input[] = [
+                'productId' => $productParameter->productId,
+                'parameterId' => $productParameter->parameterId,
+                'values' => $this->getParameterValuesInput($productParameter),
+                'append' => $productParameter->append,
+            ];
         }
 
         return $this->executeQuery(
             $gql,
             [
-                'input' => [
-                    'productId' => $productId,
-                    'parameterId' => $parameterId,
-                    'values' => $valuesInput,
-                    'append' => $append,
-                ],
+                'input' => $input,
             ]
         );
     }
@@ -235,6 +264,17 @@ class Product extends AbstractService
                 ],
             ],
         ];
+    }
+
+    private function getParameterValuesInput(ProductParameter $productParameter): array
+    {
+        $valuesInput = [];
+
+        foreach ($productParameter->values as $item) {
+            $valuesInput[][$item->getType()] = $item->getValue();
+        }
+
+        return $valuesInput;
     }
 
     private function getProductCreateOrUpdateMutation(): Mutation
