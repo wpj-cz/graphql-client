@@ -9,7 +9,7 @@ use GraphQL\Query;
 use GraphQL\Variable;
 
 /**
- * Service that works with sellers.
+ * Service that works with sellers. TEST
  */
 class Seller extends AbstractService
 {
