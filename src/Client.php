@@ -13,7 +13,7 @@ use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
 use WpjShop\GraphQL\Services\Store;
 
-final class Client
+class Client
 {
     public Order $order;
     public Product $product;
@@ -50,15 +50,7 @@ final class Client
         return $this->client->runRawQuery($queryString, $resultsAsArray, $variables);
     }
 
-    private function createServices(): void
-    {
-        foreach ($this->getServicesClasses() as $class) {
-            $service = new $class($this->client);
-            $this->{mb_strtolower((new \ReflectionClass($service))->getShortName())} = $service;
-        }
-    }
-
-    private function getServicesClasses(): array
+    protected function getServicesClasses(): array
     {
         return [
             Order::class,
@@ -69,5 +61,13 @@ final class Client
             Seller::class,
             Store::class,
         ];
+    }
+
+    private function createServices(): void
+    {
+        foreach ($this->getServicesClasses() as $class) {
+            $service = new $class($this->client);
+            $this->{mb_strtolower((new \ReflectionClass($service))->getShortName())} = $service;
+        }
     }
 }

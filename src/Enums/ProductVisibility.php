@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Enums;
 
-class ProductVisibility
+final class ProductVisibility
 {
     public const VISIBLE = 'VISIBLE';
 

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Services;
 
+use GraphQL\Mutation;
 use GraphQL\Query;
+use GraphQL\Variable;
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
 class Section extends AbstractService
@@ -50,5 +52,22 @@ class Section extends AbstractService
     public function create(array $data): array
     {
         throw new MethodNotImplementedException('Section create is not implemented');
+    }
+
+    /**
+     * Translate section.
+     */
+    public function translate(int $id, string $language, array $data): array
+    {
+        $gql = (new Mutation('sectionTranslate'))
+            ->setVariables([new Variable('input', 'SectionTranslationInput', true)])
+            ->setArguments(['input' => '$input'])
+            ->setSelectionSet(
+                ['result']
+            );
+
+        return $this->executeQuery($gql, [
+            'input' => array_merge(['sectionId' => $id, 'language' => $language], $data),
+        ]);
     }
 }

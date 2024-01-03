@@ -7,6 +7,7 @@ namespace WpjShop\GraphQL\Services;
 use GraphQL\Client;
 use GraphQL\Exception\QueryError;
 use GraphQL\Query;
+use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
 abstract class AbstractService implements ServiceInterface
 {
@@ -26,12 +27,18 @@ abstract class AbstractService implements ServiceInterface
         return $this;
     }
 
+    public function translate(int $id, string $language, array $data): array
+    {
+        throw new MethodNotImplementedException('Translate method is not implemented');
+    }
+
     abstract protected function getDefaultSelectionSet(): array;
 
     protected function getSelectionSet(): array
     {
-        return empty($this->selection) ?
-            $this->recursivelyCreateSelectionSet($this->getDefaultSelectionSet()) : $this->selection;
+        return $this->createSelectionSet(
+            $this->selection ?: $this->getDefaultSelectionSet()
+        );
     }
 
     protected function executeQuery(Query $gql, array $variables = [], bool $resetResult = true): ?array
@@ -71,6 +78,11 @@ abstract class AbstractService implements ServiceInterface
 
         return (new Query($queryName))
             ->setSelectionSet($selectionSet);
+    }
+
+    protected function createSelectionSet(array $selection): array
+    {
+        return $this->recursivelyCreateSelectionSet($selection);
     }
 
     private function recursivelyCreateSelectionSet(array $selection): array

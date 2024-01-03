@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\DataObjects\Product;
 
-class CollectionItem
+final class CollectionItem
 {
     public int $productId;
 

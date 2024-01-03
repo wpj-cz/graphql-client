@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\DataObjects\Product;
 
-class LinkItem
+final class LinkItem
 {
     private string $name;
     private string $link;
