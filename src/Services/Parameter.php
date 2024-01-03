@@ -102,7 +102,7 @@ class Parameter extends AbstractService
         return $this->executeQuery($gql, [
                 'offset' => $offset,
                 'limit' => $limit,
-                'filter' => ['parameterId' => $parameterId]
+                'filter' => ['parameterId' => $parameterId],
             ]
         );
     }
