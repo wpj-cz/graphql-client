@@ -13,16 +13,37 @@ abstract class AbstractService implements ServiceInterface
 {
     protected Client $client;
 
-    protected array $selection = [];
+    private array $selection = [];
 
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
+    /**
+     * Overwrites default selection.
+     */
     public function setSelection(array $selection): self
     {
         $this->selection = $this->recursivelyCreateSelectionSet($selection);
+
+        return $this;
+    }
+
+    protected function getSelection(): array
+    {
+        return $this->selection ?: $this->getDefaultSelectionSet();
+    }
+
+    /**
+     * Adds selection to current selection.
+     */
+    public function addSelection(array $selection): self
+    {
+        $this->selection = array_merge(
+            $this->getSelection(),
+            $this->recursivelyCreateSelectionSet($selection)
+        );
 
         return $this;
     }
@@ -37,7 +58,7 @@ abstract class AbstractService implements ServiceInterface
     protected function getSelectionSet(): array
     {
         return $this->createSelectionSet(
-            $this->selection ?: $this->getDefaultSelectionSet()
+            $this->getSelection()
         );
     }
 

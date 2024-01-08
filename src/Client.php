@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WpjShop\GraphQL;
 
 use GraphQL\Results;
+use WpjShop\GraphQL\Services\EditableContent;
 use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
 use WpjShop\GraphQL\Services\Producer;
@@ -22,6 +23,7 @@ class Client
     public Section $section;
     public Seller $seller;
     public Store $store;
+    public EditableContent $editableContent;
 
     private \GraphQL\Client $client;
 
@@ -60,6 +62,7 @@ class Client
             Section::class,
             Seller::class,
             Store::class,
+            EditableContent::class,
         ];
     }
 
@@ -67,7 +70,7 @@ class Client
     {
         foreach ($this->getServicesClasses() as $class) {
             $service = new $class($this->client);
-            $this->{mb_strtolower((new \ReflectionClass($service))->getShortName())} = $service;
+            $this->{lcfirst((new \ReflectionClass($service))->getShortName())} = $service;
         }
     }
 }
