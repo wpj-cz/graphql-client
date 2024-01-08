@@ -40,7 +40,7 @@ class EditableContent extends AbstractService
 
     public function update(int $id, array $data): array
     {
-        $gql =  (new Mutation('editableContentUpdate'))
+        $gql = (new Mutation('editableContentUpdate'))
              ->setVariables([new Variable('input', 'EditableContentInput', true)])
              ->setArguments(['input' => '$input'])
              ->setSelectionSet(
@@ -60,7 +60,7 @@ class EditableContent extends AbstractService
 
     public function translate(int $id, string $language, array $data): array
     {
-        $gql =  (new Mutation('editableContentTranslate'))
+        $gql = (new Mutation('editableContentTranslate'))
              ->setVariables([new Variable('input', 'EditableContentTranslationInput', true)])
              ->setArguments(['input' => '$input'])
              ->setSelectionSet(
