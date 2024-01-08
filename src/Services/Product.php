@@ -9,7 +9,6 @@ use GraphQL\Query;
 use GraphQL\Variable;
 use WpjShop\GraphQL\DataObjects\Product\CollectionItem;
 use WpjShop\GraphQL\DataObjects\Product\LinkItem;
-use WpjShop\GraphQL\DataObjects\Product\ParameterValue;
 use WpjShop\GraphQL\DataObjects\Product\ProductParameter;
 use WpjShop\GraphQL\DataObjects\Product\RelatedItem;
 

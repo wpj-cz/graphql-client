@@ -65,19 +65,19 @@ class Seller extends AbstractService
         ];
     }
 
-     private function getSellerCreateOrUpdateMutation(): Mutation
-     {
-         return (new Mutation('sellerCreateOrUpdate'))
-             ->setVariables([new Variable('seller', 'SellerInput', true)])
-             ->setArguments(['input' => '$seller'])
-             ->setSelectionSet(
-                 [
-                     'result',
-                     (new Query('seller'))
-                         ->setSelectionSet(
-                             $this->getSelectionSet()
-                         ),
-                 ]
-             );
-     }
+    private function getSellerCreateOrUpdateMutation(): Mutation
+    {
+        return (new Mutation('sellerCreateOrUpdate'))
+            ->setVariables([new Variable('seller', 'SellerInput', true)])
+            ->setArguments(['input' => '$seller'])
+            ->setSelectionSet(
+                [
+                    'result',
+                    (new Query('seller'))
+                        ->setSelectionSet(
+                            $this->getSelectionSet()
+                        ),
+                ]
+            );
+    }
 }
