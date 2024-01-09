@@ -13,4 +13,6 @@ interface ServiceInterface
     public function update(int $id, array $data): array;
 
     public function create(array $data): array;
+
+    public function translate(int $id, string $language, array $data): array;
 }

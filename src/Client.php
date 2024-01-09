@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WpjShop\GraphQL;
 
 use GraphQL\Results;
+use WpjShop\GraphQL\Services\EditableContent;
 use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
 use WpjShop\GraphQL\Services\Producer;
@@ -13,7 +14,7 @@ use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
 use WpjShop\GraphQL\Services\Store;
 
-final class Client
+class Client
 {
     public Order $order;
     public Product $product;
@@ -22,6 +23,7 @@ final class Client
     public Section $section;
     public Seller $seller;
     public Store $store;
+    public EditableContent $editableContent;
 
     private \GraphQL\Client $client;
 
@@ -50,15 +52,7 @@ final class Client
         return $this->client->runRawQuery($queryString, $resultsAsArray, $variables);
     }
 
-    private function createServices(): void
-    {
-        foreach ($this->getServicesClasses() as $class) {
-            $service = new $class($this->client);
-            $this->{mb_strtolower((new \ReflectionClass($service))->getShortName())} = $service;
-        }
-    }
-
-    private function getServicesClasses(): array
+    protected function getServicesClasses(): array
     {
         return [
             Order::class,
@@ -68,6 +62,15 @@ final class Client
             Section::class,
             Seller::class,
             Store::class,
+            EditableContent::class,
         ];
+    }
+
+    private function createServices(): void
+    {
+        foreach ($this->getServicesClasses() as $class) {
+            $service = new $class($this->client);
+            $this->{lcfirst((new \ReflectionClass($service))->getShortName())} = $service;
+        }
     }
 }

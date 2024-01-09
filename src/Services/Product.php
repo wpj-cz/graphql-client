@@ -9,7 +9,6 @@ use GraphQL\Query;
 use GraphQL\Variable;
 use WpjShop\GraphQL\DataObjects\Product\CollectionItem;
 use WpjShop\GraphQL\DataObjects\Product\LinkItem;
-use WpjShop\GraphQL\DataObjects\Product\ParameterValue;
 use WpjShop\GraphQL\DataObjects\Product\ProductParameter;
 use WpjShop\GraphQL\DataObjects\Product\RelatedItem;
 
@@ -71,7 +70,10 @@ class Product extends AbstractService
         );
     }
 
-    public function translate(int $productId, string $language, array $data): array
+    /**
+     * Translate product.
+     */
+    public function translate(int $id, string $language, array $data): array
     {
         $gql = (new Mutation('productTranslate'))
             ->setVariables([new Variable('input', 'ProductTranslationInput', true)])
@@ -81,14 +83,12 @@ class Product extends AbstractService
             );
 
         return $this->executeQuery($gql, [
-            'input' => array_merge(['productId' => $productId, 'language' => $language], $data),
+            'input' => array_merge(['productId' => $id, 'language' => $language], $data),
         ]);
     }
 
     /**
      * Update product parameter values.
-     *
-     * @param ParameterValue[] $values
      */
     public function updateParameter(ProductParameter $productParameter): array
     {

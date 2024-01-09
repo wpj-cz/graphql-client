@@ -7,18 +7,22 @@ namespace WpjShop\GraphQL\Services;
 use GraphQL\Client;
 use GraphQL\Exception\QueryError;
 use GraphQL\Query;
+use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
 abstract class AbstractService implements ServiceInterface
 {
     protected Client $client;
 
-    protected array $selection = [];
+    private array $selection = [];
 
     public function __construct(Client $client)
     {
         $this->client = $client;
     }
 
+    /**
+     * Overwrites default selection.
+     */
     public function setSelection(array $selection): self
     {
         $this->selection = $this->recursivelyCreateSelectionSet($selection);
@@ -26,12 +30,36 @@ abstract class AbstractService implements ServiceInterface
         return $this;
     }
 
+    protected function getSelection(): array
+    {
+        return $this->selection ?: $this->getDefaultSelectionSet();
+    }
+
+    /**
+     * Adds selection to current selection.
+     */
+    public function addSelection(array $selection): self
+    {
+        $this->selection = array_merge(
+            $this->getSelection(),
+            $this->recursivelyCreateSelectionSet($selection)
+        );
+
+        return $this;
+    }
+
+    public function translate(int $id, string $language, array $data): array
+    {
+        throw new MethodNotImplementedException('Translate method is not implemented');
+    }
+
     abstract protected function getDefaultSelectionSet(): array;
 
     protected function getSelectionSet(): array
     {
-        return empty($this->selection) ?
-            $this->recursivelyCreateSelectionSet($this->getDefaultSelectionSet()) : $this->selection;
+        return $this->createSelectionSet(
+            $this->getSelection()
+        );
     }
 
     protected function executeQuery(Query $gql, array $variables = [], bool $resetResult = true): ?array
@@ -71,6 +99,11 @@ abstract class AbstractService implements ServiceInterface
 
         return (new Query($queryName))
             ->setSelectionSet($selectionSet);
+    }
+
+    protected function createSelectionSet(array $selection): array
+    {
+        return $this->recursivelyCreateSelectionSet($selection);
     }
 
     private function recursivelyCreateSelectionSet(array $selection): array

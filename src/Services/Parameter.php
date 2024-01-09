@@ -56,6 +56,71 @@ class Parameter extends AbstractService
         ]);
     }
 
+    /**
+     * Translate parameter.
+     */
+    public function translate(int $id, string $language, array $data): array
+    {
+        $gql = (new Mutation('parameterTranslate'))
+            ->setVariables([new Variable('input', 'ParameterTranslationInput', true)])
+            ->setArguments(['input' => '$input'])
+            ->setSelectionSet(
+                ['result']
+            );
+
+        return $this->executeQuery($gql, [
+            'input' => array_merge(['parameterId' => $id, 'language' => $language], $data),
+        ]);
+    }
+
+    /**
+     * Returns list of parameters values.
+     *
+     * @param int|int[]|null $parameterId
+     */
+    public function getParameterValues($parameterId = null, int $offset = 0, int $limit = 100): array
+    {
+        $gql = $this->createBaseQuery('parameterValues', true)
+            ->setSelectionSet(
+                $this->createSelectionSet($this->getParameterValuesSelectionSet())
+            )
+            ->setVariables([
+                new Variable('offset', 'Int', true),
+                new Variable('limit', 'Int', true),
+                new Variable('filter', 'ParameterListFilterInput'),
+            ])
+            ->setArguments([
+                'offset' => '$offset',
+                'limit' => '$limit',
+                'filter' => '$filter',
+            ]);
+
+        if ($parameterId !== null && !is_array($parameterId)) {
+            $parameterId = [$parameterId];
+        }
+
+        return $this->executeQuery($gql, [
+                'offset' => $offset,
+                'limit' => $limit,
+                'filter' => ['parameterId' => $parameterId],
+            ]
+        );
+    }
+
+    public function translateParameterValue(int $id, string $language, array $data): array
+    {
+        $gql = (new Mutation('parameterValuesTranslate'))
+            ->setVariables([new Variable('input', 'ParameterValuesTranslationInput', true)])
+            ->setArguments(['input' => '$input'])
+            ->setSelectionSet(
+                ['result']
+            );
+
+        return $this->executeQuery($gql, [
+            'input' => array_merge(['valueId' => $id, 'language' => $language], $data),
+        ]);
+    }
+
     protected function getDefaultSelectionSet(): array
     {
         return [
@@ -63,6 +128,19 @@ class Parameter extends AbstractService
             'name',
             'type',
             'unit',
+        ];
+    }
+
+    protected function getParameterValuesSelectionSet(): array
+    {
+        return [
+            'items' => [
+                'id',
+                'value',
+                'description',
+            ],
+            'hasNextPage',
+            'hasPreviousPage',
         ];
     }
 }
