@@ -6,6 +6,7 @@ namespace WpjShop\GraphQL\Services;
 
 use GraphQL\Client;
 use GraphQL\Exception\QueryError;
+use GraphQL\Mutation;
 use GraphQL\Query;
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
@@ -75,9 +76,12 @@ abstract class AbstractService implements ServiceInterface
 
             return $result;
         } catch (QueryError $e) {
-            // handle not found error and return null as result
-            if (($e->getErrorDetails()['extensions']['category'] ?? null) === 'NOT_FOUND') {
-                return null;
+            // mutation should always throw 404 errors
+            if (!($gql instanceof Mutation)) {
+                // handle not found error and return null as result
+                if (($e->getErrorDetails()['extensions']['category'] ?? null) === 'NOT_FOUND') {
+                    return null;
+                }
             }
 
             // other errors should be thrown
