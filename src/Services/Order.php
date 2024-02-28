@@ -77,7 +77,7 @@ class Order extends AbstractService
         $gql->setVariables($variables)
             ->setArguments($arguments);
 
-        return $this->executeQuery($gql);
+        return $this->executeQuery($gql, ['filter' => $filter, 'sort' => $sort]);
     }
 
     public function update(int $id, array $data): array
