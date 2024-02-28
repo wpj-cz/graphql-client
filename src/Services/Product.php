@@ -40,12 +40,27 @@ class Product extends AbstractService
     /**
      * Returns products list.
      */
-    public function list(int $offset = 0, int $limit = 100): array
+    public function list(int $offset = 0, int $limit = 100, array $filter = [], array $sort = []): array
     {
-        $gql = $this->createBaseQuery('products', true)
-            ->setArguments(['offset' => $offset, 'limit' => $limit]);
+        $gql = $this->createBaseQuery('products', true);
 
-        return $this->executeQuery($gql);
+        $arguments = ['offset' => $offset, 'limit' => $limit];
+        $variables = [];
+
+        if ($filter) {
+            $arguments['filter'] = '$filter';
+            $variables[] = new Variable('filter', 'ProductFilterInput', true);
+        }
+
+        if ($sort) {
+            $arguments['sort'] = '$sort';
+            $variables[] = new Variable('sort', 'ProductSortInput', true);
+        }
+
+        $gql->setVariables($variables)
+            ->setArguments($arguments);
+
+        return $this->executeQuery($gql, ['filter' => $filter, 'sort' => $sort]);
     }
 
     /**

@@ -21,7 +21,10 @@ class Order extends AbstractService
             'code',
             'email',
             'dateCreated',
-            'status',
+            'status' => [
+                'id',
+                'name',
+            ],
             'totalPrice' => [
                 'withVat',
                 'withoutVat',
@@ -54,10 +57,25 @@ class Order extends AbstractService
         return $this->executeQuery($gql);
     }
 
-    public function list(int $offset = 0, int $limit = 100): array
+    public function list(int $offset = 0, int $limit = 100, array $filter = [], array $sort = []): array
     {
-        $gql = $this->createBaseQuery('orders', true)
-            ->setArguments(['offset' => $offset, 'limit' => $limit]);
+        $gql = $this->createBaseQuery('orders', true);
+
+        $arguments = ['offset' => $offset, 'limit' => $limit];
+        $variables = [];
+
+        if ($filter) {
+            $arguments['filter'] = '$filter';
+            $variables[] = new Variable('filter', 'OrderFilterInput', true);
+        }
+
+        if ($sort) {
+            $arguments['sort'] = '$sort';
+            $variables[] = new Variable('sort', 'OrderSortInput', true);
+        }
+
+        $gql->setVariables($variables)
+            ->setArguments($arguments);
 
         return $this->executeQuery($gql);
     }

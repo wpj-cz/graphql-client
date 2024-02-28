@@ -30,7 +30,7 @@ class Producer extends AbstractService
     /**
      * Returns producers list.
      */
-    public function list(int $offset = 0, int $limit = 100): array
+    public function list(int $offset = 0, int $limit = 100, array $filter = [], array $sort = []): array
     {
         $gql = $this->createBaseQuery('producers', true);
 

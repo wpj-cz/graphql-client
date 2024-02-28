@@ -36,6 +36,7 @@ class Client
             ],
             [
                 'timeout' => 60,
+                'allow_redirects' => ['strict' => true],
             ]
         );
 

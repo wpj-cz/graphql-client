@@ -8,7 +8,7 @@ interface ServiceInterface
 
     public function get(int $id): ?array;
 
-    public function list(int $offset = 0, int $limit = 100): array;
+    public function list(int $offset = 0, int $limit = 100, array $filter = [], array $sort = []): array;
 
     public function update(int $id, array $data): array;
 

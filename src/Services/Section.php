@@ -37,7 +37,7 @@ class Section extends AbstractService
         return $this->executeQuery($gql);
     }
 
-    public function list(int $offset = 0, int $limit = 100): array
+    public function list(int $offset = 0, int $limit = 100, array $filter = [], array $sort = []): array
     {
         $gql = $this->createBaseQuery('sectionsList', true);
 

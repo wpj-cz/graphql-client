@@ -28,7 +28,7 @@ class EditableContent extends AbstractService
         throw new MethodNotImplementedException();
     }
 
-    public function list(int $offset = 0, int $limit = 100): array
+    public function list(int $offset = 0, int $limit = 100, array $filter = [], array $sort = []): array
     {
         throw new MethodNotImplementedException();
     }

@@ -27,7 +27,7 @@ class Seller extends AbstractService
     /**
      * Returns sellers list.
      */
-    public function list(int $offset = 0, int $limit = 100): array
+    public function list(int $offset = 0, int $limit = 100, array $filter = [], array $sort = []): array
     {
         $gql = $this->createBaseQuery('sellers', true);
 
