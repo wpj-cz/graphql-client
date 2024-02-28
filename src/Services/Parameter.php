@@ -78,7 +78,7 @@ class Parameter extends AbstractService
      *
      * @param int|int[]|null $parameterId
      */
-    public function getParameterValues(array|int $parameterId = null, int $offset = 0, int $limit = 100): array
+    public function getParameterValues(array|int|null $parameterId = null, int $offset = 0, int $limit = 100): array
     {
         $gql = $this->createBaseQuery('parameterValues', true)
             ->setSelectionSet(
