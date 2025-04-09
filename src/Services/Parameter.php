@@ -100,10 +100,10 @@ class Parameter extends AbstractEntityService
         }
 
         return $this->executeQuery($gql, [
-                'offset' => $offset,
-                'limit' => $limit,
-                'filter' => ['parameterId' => $parameterId],
-            ]
+            'offset' => $offset,
+            'limit' => $limit,
+            'filter' => ['parameterId' => $parameterId],
+        ]
         );
     }
 

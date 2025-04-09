@@ -6,8 +6,6 @@ namespace WpjShop\GraphQL\Services;
 
 use GraphQL\Mutation;
 use GraphQL\Variable;
-use WpjShop\GraphQL\DataObjects\Change\AbstractChange;
-use WpjShop\GraphQL\DataObjects\Change\ChangeInterface;
 use WpjShop\GraphQL\Exception\ChangesException;
 
 class Changes extends AbstractService

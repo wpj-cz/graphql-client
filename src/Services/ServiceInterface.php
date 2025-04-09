@@ -6,5 +6,4 @@ namespace WpjShop\GraphQL\Services;
 
 interface ServiceInterface
 {
-
 }

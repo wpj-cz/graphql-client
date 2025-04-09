@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Services;
 
-use GraphQL\Client;
-use GraphQL\Exception\QueryError;
-use GraphQL\Mutation;
 use GraphQL\Query;
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 

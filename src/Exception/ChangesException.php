@@ -6,5 +6,4 @@ namespace WpjShop\GraphQL\Exception;
 
 class ChangesException extends \Exception
 {
-
 }
