@@ -9,7 +9,7 @@ use GraphQL\Query;
 use GraphQL\Variable;
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
-class Section extends AbstractService
+class Section extends AbstractEntityService
 {
     protected function getDefaultSelectionSet(): array
     {

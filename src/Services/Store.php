@@ -8,7 +8,7 @@ use GraphQL\Mutation;
 use GraphQL\Variable;
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
-class Store extends AbstractService
+class Store extends AbstractEntityService
 {
     protected function getDefaultSelectionSet(): array
     {

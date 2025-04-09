@@ -15,7 +15,7 @@ use WpjShop\GraphQL\DataObjects\Product\RelatedItem;
 /**
  * Service that works with product.
  */
-class Product extends AbstractService
+class Product extends AbstractEntityService
 {
     /**
      * Returns product by ID.

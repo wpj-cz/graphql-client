@@ -8,7 +8,7 @@ use GraphQL\Mutation;
 use GraphQL\Variable;
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
-class EditableContent extends AbstractService
+class EditableContent extends AbstractEntityService
 {
     protected function getDefaultSelectionSet(): array
     {

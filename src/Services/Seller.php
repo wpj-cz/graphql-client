@@ -11,7 +11,7 @@ use GraphQL\Variable;
 /**
  * Service that works with sellers.
  */
-class Seller extends AbstractService
+class Seller extends AbstractEntityService
 {
     /**
      * Returns seller by ID.

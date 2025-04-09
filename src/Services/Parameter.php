@@ -11,7 +11,7 @@ use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 /**
  * Service that works with parameters.
  */
-class Parameter extends AbstractService
+class Parameter extends AbstractEntityService
 {
     /**
      * Returns parameter by ID.
