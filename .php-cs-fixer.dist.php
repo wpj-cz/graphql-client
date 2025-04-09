@@ -13,7 +13,7 @@ return (new PhpCsFixer\Config())
         '@Symfony' => true,
         'array_syntax' => ['syntax' => 'short'],
         'phpdoc_align' => false,
-        'yoda_style' => [],
+        'yoda_style' => false,
         'increment_style' => false,
         'no_unneeded_curly_braces' => false,
         'standardize_increment' => false,
