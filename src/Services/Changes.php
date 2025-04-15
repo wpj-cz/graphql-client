@@ -18,7 +18,7 @@ class Changes extends AbstractService
      *
      * @throws ChangesException
      */
-    public function consume(callable $fn, int $limit = 500): void
+    public function consume(callable $fn, int $limit = 1000): void
     {
         $processedCount = 0;
 
