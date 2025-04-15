@@ -6,7 +6,7 @@ namespace WpjShop\GraphQL\Services;
 
 use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 
-class Producer extends AbstractService
+class Producer extends AbstractEntityService
 {
     protected function getDefaultSelectionSet(): array
     {

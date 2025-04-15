@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WpjShop\GraphQL;
 
 use GraphQL\Results;
+use WpjShop\GraphQL\Services\Changes;
 use WpjShop\GraphQL\Services\EditableContent;
 use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
@@ -24,6 +25,7 @@ class Client
     public Seller $seller;
     public Store $store;
     public EditableContent $editableContent;
+    public Changes $changes;
 
     private \GraphQL\Client $client;
 
@@ -64,6 +66,7 @@ class Client
             Seller::class,
             Store::class,
             EditableContent::class,
+            Changes::class,
         ];
     }
 

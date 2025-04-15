@@ -11,7 +11,7 @@ use WpjShop\GraphQL\Exception\MethodNotImplementedException;
 /**
  * Service that works with parameters.
  */
-class Parameter extends AbstractService
+class Parameter extends AbstractEntityService
 {
     /**
      * Returns parameter by ID.
@@ -100,10 +100,10 @@ class Parameter extends AbstractService
         }
 
         return $this->executeQuery($gql, [
-                'offset' => $offset,
-                'limit' => $limit,
-                'filter' => ['parameterId' => $parameterId],
-            ]
+            'offset' => $offset,
+            'limit' => $limit,
+            'filter' => ['parameterId' => $parameterId],
+        ]
         );
     }
 
