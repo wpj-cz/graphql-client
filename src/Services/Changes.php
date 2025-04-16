@@ -119,7 +119,11 @@ class Changes extends AbstractService
                   orderId
                   orderItemId
                   changedFields
-                }                
+                }
+                ... on UserChange {
+                  userId
+                  changedFields
+                }             
               }
             }
         GQL;
