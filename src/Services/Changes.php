@@ -111,6 +111,15 @@ class Changes extends AbstractService
                   discount
                   discountPrevious
                 }
+                ... on OrderChange {
+                  orderId
+                  changedFields
+                }
+                ... on OrderItemChange {
+                  orderId
+                  orderItemId
+                  changedFields
+                }                
               }
             }
         GQL;
