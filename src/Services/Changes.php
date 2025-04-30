@@ -123,7 +123,12 @@ class Changes extends AbstractService
                 ... on UserChange {
                   userId
                   changedFields
-                }             
+                }
+                ... on UserBonusPointChange {
+                  bonusPointId
+                  points
+                  status
+                }  
               }
             }
         GQL;
