@@ -128,4 +128,25 @@ class Order extends AbstractEntityService
             'sort' => ['dateCreated' => 'ASC'],
         ]);
     }
+
+    public function storno(int $id, array $data): array
+    {
+        $gql = (new Mutation('orderStorno'))
+            ->setVariables([new Variable('order', 'OrderStornoInput', true)])
+            ->setArguments(['input' => '$order'])
+            ->setSelectionSet(
+                [
+                    'result',
+                    (new Query('order'))
+                        ->setSelectionSet(
+                            $this->getSelectionSet()
+                        ),
+                ]
+            );
+
+        return $this->executeQuery(
+            $gql,
+            ['order' => array_merge(['id' => $id], $data)]
+        );
+    }
 }
