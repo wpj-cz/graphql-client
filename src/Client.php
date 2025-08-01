@@ -16,6 +16,7 @@ use WpjShop\GraphQL\Services\ReturnDto;
 use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
 use WpjShop\GraphQL\Services\Store;
+use WpjShop\GraphQL\Services\Variation;
 
 class Client
 {
@@ -30,6 +31,7 @@ class Client
     public Changes $changes;
     public ReturnDto $returnDto;
     public Configuration $configuration;
+    public Variation $variation;
 
     private \GraphQL\Client $client;
 
@@ -73,6 +75,7 @@ class Client
             Changes::class,
             ReturnDto::class,
             Configuration::class,
+            Variation::class,
         ];
     }
 
