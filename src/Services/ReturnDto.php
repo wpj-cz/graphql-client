@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Services;
@@ -56,7 +57,8 @@ class ReturnDto extends AbstractEntityService
         ];
     }
 
-    public function get(int $id): ?array {
+    public function get(int $id): ?array
+    {
         $gql = $this->createBaseQuery('return')
             ->setArguments(['id' => $id]);
 
@@ -122,13 +124,14 @@ class ReturnDto extends AbstractEntityService
         );
     }
 
-    private function getResponseSelectionSet(): array {
+    private function getResponseSelectionSet(): array
+    {
         return [
             'result',
             (new Query('return'))
                 ->setSelectionSet(
                     $this->getSelectionSet()
-                )
+                ),
         ];
     }
 }
