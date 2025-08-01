@@ -66,4 +66,27 @@ class AbstractService implements ServiceInterface
             throw $e;
         }
     }
+
+    protected function createSelectionSet(array $selection): array
+    {
+        return $this->recursivelyCreateSelectionSet($selection);
+    }
+
+    protected function recursivelyCreateSelectionSet(array $selection): array
+    {
+        $selectionSet = [];
+
+        foreach ($selection as $key => $item) {
+            if (is_array($item)) {
+                $selectionSet[] = (new Query($key))
+                    ->setSelectionSet($this->recursivelyCreateSelectionSet($item));
+
+                continue;
+            }
+
+            $selectionSet[] = $item;
+        }
+
+        return $selectionSet;
+    }
 }

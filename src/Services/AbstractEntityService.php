@@ -68,27 +68,4 @@ abstract class AbstractEntityService extends AbstractService implements EntitySe
         return (new Query($queryName))
             ->setSelectionSet($selectionSet);
     }
-
-    protected function createSelectionSet(array $selection): array
-    {
-        return $this->recursivelyCreateSelectionSet($selection);
-    }
-
-    private function recursivelyCreateSelectionSet(array $selection): array
-    {
-        $selectionSet = [];
-
-        foreach ($selection as $key => $item) {
-            if (is_array($item)) {
-                $selectionSet[] = (new Query($key))
-                    ->setSelectionSet($this->recursivelyCreateSelectionSet($item));
-
-                continue;
-            }
-
-            $selectionSet[] = $item;
-        }
-
-        return $selectionSet;
-    }
 }
