@@ -6,6 +6,7 @@ namespace WpjShop\GraphQL;
 
 use GraphQL\Results;
 use WpjShop\GraphQL\Services\Changes;
+use WpjShop\GraphQL\Services\Configuration;
 use WpjShop\GraphQL\Services\EditableContent;
 use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
@@ -28,6 +29,7 @@ class Client
     public EditableContent $editableContent;
     public Changes $changes;
     public ReturnDto $returnDto;
+    public Configuration $configuration;
 
     private \GraphQL\Client $client;
 
@@ -70,6 +72,7 @@ class Client
             EditableContent::class,
             Changes::class,
             ReturnDto::class,
+            Configuration::class,
         ];
     }
 
