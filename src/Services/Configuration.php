@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Services;
@@ -7,16 +8,18 @@ use GraphQL\Query;
 
 class Configuration extends AbstractService
 {
-    public function getOrderStatuses(): array {
+    public function getOrderStatuses(): array
+    {
         return $this->getConfiguration([
             'orderStatuses' => [
                 'id',
                 'name',
-            ]
+            ],
         ]);
     }
 
-    public function getOrderSources(): array {
+    public function getOrderSources(): array
+    {
         return $this->getConfiguration([
             'orderSources' => [
                 'source',
@@ -25,7 +28,8 @@ class Configuration extends AbstractService
         ]);
     }
 
-    public function getDeliveryTypes(): array {
+    public function getDeliveryTypes(): array
+    {
         return $this->getConfiguration([
             'deliveryTypes' => [
                 'type',
@@ -34,7 +38,8 @@ class Configuration extends AbstractService
         ]);
     }
 
-    public function getPaymentTypes(): array {
+    public function getPaymentTypes(): array
+    {
         return $this->getConfiguration([
             'paymentTypes' => [
                 'type',
@@ -43,7 +48,8 @@ class Configuration extends AbstractService
         ]);
     }
 
-    public function getDeliveryTimes(): array {
+    public function getDeliveryTimes(): array
+    {
         return $this->getConfiguration([
             'deliveryTimes' => [
                 'id',
@@ -52,31 +58,35 @@ class Configuration extends AbstractService
         ]);
     }
 
-    public function getDropshipmentTypes():array {
+    public function getDropshipmentTypes(): array
+    {
         return $this->getConfiguration([
             'dropshipmentTypes',
         ]);
     }
 
-    public function getReturnStatuses(): array {
+    public function getReturnStatuses(): array
+    {
         return $this->getConfiguration([
             'returnStatuses' => [
                 'id',
                 'name',
-            ]
+            ],
         ]);
     }
 
-    public function getReturnReasons(): array {
+    public function getReturnReasons(): array
+    {
         return $this->getConfiguration([
             'returnReasons' => [
                 'id',
                 'name',
-            ]
+            ],
         ]);
     }
 
-    private function getConfiguration(array $selection): array {
+    private function getConfiguration(array $selection): array
+    {
         $gql = (new Query('configuration'))
             ->setSelectionSet($this->createSelectionSet($selection));
 
