@@ -11,6 +11,7 @@ use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
 use WpjShop\GraphQL\Services\Producer;
 use WpjShop\GraphQL\Services\Product;
+use WpjShop\GraphQL\Services\ReturnDto;
 use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
 use WpjShop\GraphQL\Services\Store;
@@ -26,6 +27,7 @@ class Client
     public Store $store;
     public EditableContent $editableContent;
     public Changes $changes;
+    public ReturnDto $returnDto;
 
     private \GraphQL\Client $client;
 
@@ -67,6 +69,7 @@ class Client
             Store::class,
             EditableContent::class,
             Changes::class,
+            ReturnDto::class,
         ];
     }
 
