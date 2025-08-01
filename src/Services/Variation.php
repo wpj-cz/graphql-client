@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Services;
@@ -23,29 +24,29 @@ class Variation extends AbstractEntityService
                 'labels' => [
                     'label' => [
                         'id',
-                        'name'
+                        'name',
                     ],
                     'value',
-                    'title'
+                    'title',
                 ],
                 'values' => [
                     'label' => [
                         'id',
-                        'name'
+                        'name',
                     ],
                     'value',
-                    'title'
+                    'title',
                 ],
                 'visible',
                 'price' => [
                     'withVat',
-                    'withoutVat'
+                    'withoutVat',
                 ],
                 'deliveryTime' => [
                     'id',
-                    'name'
-                ]
-            ]
+                    'name',
+                ],
+            ],
         ];
     }
 
