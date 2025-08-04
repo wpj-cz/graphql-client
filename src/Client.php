@@ -12,6 +12,7 @@ use WpjShop\GraphQL\Services\Order;
 use WpjShop\GraphQL\Services\Parameter;
 use WpjShop\GraphQL\Services\Producer;
 use WpjShop\GraphQL\Services\Product;
+use WpjShop\GraphQL\Services\Reclamation;
 use WpjShop\GraphQL\Services\ReturnDto;
 use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
@@ -32,6 +33,7 @@ class Client
     public ReturnDto $returnDto;
     public Configuration $configuration;
     public Variation $variation;
+    public Reclamation $reclamation;
 
     private \GraphQL\Client $client;
 
@@ -76,6 +78,7 @@ class Client
             ReturnDto::class,
             Configuration::class,
             Variation::class,
+            Reclamation::class,
         ];
     }
 
