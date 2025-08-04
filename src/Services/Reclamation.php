@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace WpjShop\GraphQL\Services;
@@ -17,7 +18,7 @@ class Reclamation extends AbstractEntityService
                 'name',
             ],
             'currency' => [
-                'code'
+                'code',
             ],
             'code',
             'bankAccount',
@@ -29,11 +30,11 @@ class Reclamation extends AbstractEntityService
             'conclusion',
             'handleType' => [
                 'handleType',
-                'handleTypeName'
+                'handleTypeName',
             ],
-            'preferredHandleType'=> [
+            'preferredHandleType' => [
                 'handleType',
-                'handleTypeName'
+                'handleTypeName',
             ],
             'item' => [
                 'id',
@@ -46,10 +47,10 @@ class Reclamation extends AbstractEntityService
                     'withoutVat',
                 ],
                 'totalPrice' => [
-                    'withoutVat'
+                    'withoutVat',
                 ],
-                'discount'
-            ]
+                'discount',
+            ],
         ];
     }
 
