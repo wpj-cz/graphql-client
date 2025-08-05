@@ -30,7 +30,7 @@ class Client
     public Store $store;
     public EditableContent $editableContent;
     public Changes $changes;
-    public ReturnDto $returnDto;
+    public ReturnDto $return;
     public Configuration $configuration;
     public Variation $variation;
     public Reclamation $reclamation;
@@ -75,7 +75,7 @@ class Client
             Store::class,
             EditableContent::class,
             Changes::class,
-            ReturnDto::class,
+            'return' => ReturnDto::class,
             Configuration::class,
             Variation::class,
             Reclamation::class,
@@ -84,9 +84,15 @@ class Client
 
     private function createServices(): void
     {
-        foreach ($this->getServicesClasses() as $class) {
+        foreach ($this->getServicesClasses() as $key => $class) {
             $service = new $class($this->client);
-            $this->{lcfirst((new \ReflectionClass($service))->getShortName())} = $service;
+            if (is_numeric($key)) {
+                $propertyName = lcfirst((new \ReflectionClass($service))->getShortName());
+            }  else {
+                $propertyName = $key;
+            }
+
+            $this->{$propertyName} = $service;
         }
     }
 }
