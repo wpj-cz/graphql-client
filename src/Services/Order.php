@@ -129,7 +129,7 @@ class Order extends AbstractEntityService
         ]);
     }
 
-    public function storno(int $id, string $message = null, bool $sendMail = null): array
+    public function storno(int $id, ?string $message = null, ?bool $sendMail = null): array
     {
         $gql = (new Mutation('orderStorno'))
             ->setVariables([new Variable('order', 'OrderStornoInput', true)])
@@ -147,7 +147,7 @@ class Order extends AbstractEntityService
         $data = [
             'id' => $id,
             'message' => $message,
-            'sendMail' => $sendMail
+            'sendMail' => $sendMail,
         ];
 
         return $this->executeQuery(
