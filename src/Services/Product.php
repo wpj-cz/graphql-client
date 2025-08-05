@@ -312,4 +312,13 @@ class Product extends AbstractEntityService
                 ),
         ];
     }
+
+    public function getByProducer(int $producerId): ?array
+    {
+        $gql = $this->createBaseQuery('products', true)
+            ->setVariables([new Variable('filter', 'ProductFilterInput', true)])
+            ->setArguments(['filter' => '$filter']);
+
+        return $this->executeQuery($gql, ['filter' => ['producer' => $producerId]])['items'] ?? null;
+    }
 }
