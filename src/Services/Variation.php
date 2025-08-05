@@ -15,37 +15,34 @@ class Variation extends AbstractEntityService
     {
         return [
             'id',
-            'variations' => [
-                'id',
-                'code',
-                'inStore',
-                'ean',
-                'title',
-                'labels' => [
-                    'label' => [
-                        'id',
-                        'name',
-                    ],
-                    'value',
-                    'title',
-                ],
-                'values' => [
-                    'label' => [
-                        'id',
-                        'name',
-                    ],
-                    'value',
-                    'title',
-                ],
-                'visible',
-                'price' => [
-                    'withVat',
-                    'withoutVat',
-                ],
-                'deliveryTime' => [
+            'code',
+            'inStore',
+            'ean',
+            'title',
+            'labels' => [
+                'label' => [
                     'id',
                     'name',
                 ],
+                'value',
+                'title',
+            ],
+            'values' => [
+                'label' => [
+                    'id',
+                    'name',
+                ],
+                'value',
+                'title',
+            ],
+            'visible',
+            'price' => [
+                'withVat',
+                'withoutVat',
+            ],
+            'deliveryTime' => [
+                'id',
+                'name',
             ],
         ];
     }
@@ -90,10 +87,10 @@ class Variation extends AbstractEntityService
     {
         return [
             'result',
-            (new Query('product'))
+            (new Query('variation'))
                 ->setSelectionSet(
                     $this->getSelectionSet()
-                ),
+                )
         ];
     }
 }
