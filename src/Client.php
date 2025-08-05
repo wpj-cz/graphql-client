@@ -88,7 +88,7 @@ class Client
             $service = new $class($this->client);
             if (is_numeric($key)) {
                 $propertyName = lcfirst((new \ReflectionClass($service))->getShortName());
-            }  else {
+            } else {
                 $propertyName = $key;
             }
 
