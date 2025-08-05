@@ -90,7 +90,7 @@ class Variation extends AbstractEntityService
             (new Query('variation'))
                 ->setSelectionSet(
                     $this->getSelectionSet()
-                )
+                ),
         ];
     }
 }
