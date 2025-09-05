@@ -78,7 +78,7 @@ class Client
                 continue;
             }
 
-            $this->{$property->getName()} = new $class($this->client);;
+            $this->{$property->getName()} = new $class($this->client);
         }
     }
 }
