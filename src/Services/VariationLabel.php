@@ -7,7 +7,6 @@ namespace WpjShop\GraphQL\Services;
 use GraphQL\Mutation;
 use GraphQL\Query;
 use GraphQL\Variable;
-use KupShop\GraphQLBundle\ApiAdmin\Types\Catalog\Product\Input\VariationLabelFilterInput;
 
 class VariationLabel extends AbstractEntityService
 {
@@ -117,10 +116,10 @@ class VariationLabel extends AbstractEntityService
         }
 
         return $this->executeQuery($gql, [
-                'offset' => $offset,
-                'limit' => $limit,
-                'filter' => ['labelId' => $variationLabelId],
-            ]
+            'offset' => $offset,
+            'limit' => $limit,
+            'filter' => ['labelId' => $variationLabelId],
+        ]
         );
     }
 
