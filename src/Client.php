@@ -20,6 +20,7 @@ use WpjShop\GraphQL\Services\Seller;
 use WpjShop\GraphQL\Services\ServiceInterface;
 use WpjShop\GraphQL\Services\Store;
 use WpjShop\GraphQL\Services\Variation;
+use WpjShop\GraphQL\Services\VariationLabel;
 
 class Client
 {
@@ -35,6 +36,7 @@ class Client
     public ReturnDto $return;
     public Configuration $configuration;
     public Variation $variation;
+    public VariationLabel $variationLabel;
     public Reclamation $reclamation;
     public Charge $charge;
 
