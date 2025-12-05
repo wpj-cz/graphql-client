@@ -76,7 +76,7 @@ class Reclamation extends AbstractEntityService
 
         if ($sort) {
             $arguments['sort'] = '$sort';
-            $arguments[] = new Variable('sort', 'ReclamationSortInput', true);
+            $variables[] = new Variable('sort', 'ReclamationSortInput', true);
         }
 
         $gql->setVariables($variables)
