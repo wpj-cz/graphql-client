@@ -29,7 +29,7 @@ class AbstractService implements ServiceInterface
             return $result;
         } catch (QueryError $e) {
             // mutation should always throw 404 errors
-            if (!($gql instanceof Mutation)) {
+            if (!$gql instanceof Mutation) {
                 // handle not found error and return null as result
                 if (($e->getErrorDetails()['extensions']['category'] ?? null) === 'NOT_FOUND') {
                     return null;
@@ -55,7 +55,7 @@ class AbstractService implements ServiceInterface
             return $result;
         } catch (QueryError $e) {
             // mutation should always throw 404 errors
-            if (!($gql instanceof Mutation)) {
+            if (!$gql instanceof Mutation) {
                 // handle not found error and return null as result
                 if (($e->getErrorDetails()['extensions']['category'] ?? null) === 'NOT_FOUND') {
                     return null;

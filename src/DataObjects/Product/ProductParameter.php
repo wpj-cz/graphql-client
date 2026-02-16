@@ -14,7 +14,7 @@ final class ProductParameter
     public function __construct(int $productId, int $parameterId, array $values, bool $append = false)
     {
         foreach ($values as $value) {
-            if (!($value instanceof ParameterValue)) {
+            if (!$value instanceof ParameterValue) {
                 throw new \InvalidArgumentException('Argument "$values" must be type of ParameterValue[]!');
             }
         }
