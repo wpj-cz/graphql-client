@@ -19,9 +19,9 @@ use WpjShop\GraphQL\Services\Section;
 use WpjShop\GraphQL\Services\Seller;
 use WpjShop\GraphQL\Services\ServiceInterface;
 use WpjShop\GraphQL\Services\Store;
+use WpjShop\GraphQL\Services\User;
 use WpjShop\GraphQL\Services\Variation;
 use WpjShop\GraphQL\Services\VariationLabel;
-use WpjShop\GraphQL\Services\User;
 
 class Client
 {
