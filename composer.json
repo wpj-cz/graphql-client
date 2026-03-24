@@ -23,7 +23,7 @@
     },
     "require": {
         "php": ">=8.2",
-        "gmostafa/php-graphql-client": "^1.13",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "pavel-paliy/php-graphql-client": "^1.0"
     }
 }
